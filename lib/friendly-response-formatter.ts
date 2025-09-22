@@ -234,10 +234,14 @@ export class FriendlyResponseFormatter {
     enhanced = enhanced.replace(/углеводы/gi, useEmojis ? '🍞 углеводы' : 'углеводы');
     enhanced = enhanced.replace(/калори/gi, useEmojis ? '🔥 калории' : 'калории');
     
-    // Format English nutrition terms
+    // Format English nutrition terms with more emojis
     enhanced = enhanced.replace(/protein/gi, useEmojis ? '💪 protein' : 'protein');
     enhanced = enhanced.replace(/calories/gi, useEmojis ? '🔥 calories' : 'calories');
     enhanced = enhanced.replace(/hydration/gi, useEmojis ? '💧 hydration' : 'hydration');
+    enhanced = enhanced.replace(/energy/gi, useEmojis ? '⚡ energy' : 'energy');
+    enhanced = enhanced.replace(/metabolism/gi, useEmojis ? '🚀 metabolism' : 'metabolism');
+    enhanced = enhanced.replace(/vitamins/gi, useEmojis ? '🌟 vitamins' : 'vitamins');
+    enhanced = enhanced.replace(/minerals/gi, useEmojis ? '✨ minerals' : 'minerals');
     
     return enhanced;
   }
@@ -268,11 +272,17 @@ export class FriendlyResponseFormatter {
     // Format example sections
     formatted = formatted.replace(/(Example:)/gi, '<strong class="text-emerald-600 italic">$1</strong>');
     
-    // Format key nutritional terms with light emphasis (no bold, just color)
-    formatted = formatted.replace(/(whole grains?|lean proteins?|healthy fats?|colorful fruits?|vegetables?)/gi, '<em class="text-emerald-600">$1</em>');
+    // Format key nutritional terms with emojis and light emphasis
+    formatted = formatted.replace(/(whole grains?)/gi, '<em class="text-emerald-600">🌾 $1</em>');
+    formatted = formatted.replace(/(lean proteins?)/gi, '<em class="text-emerald-600">💪 $1</em>');
+    formatted = formatted.replace(/(healthy fats?)/gi, '<em class="text-emerald-600">🥑 $1</em>');
+    formatted = formatted.replace(/(colorful fruits?)/gi, '<em class="text-emerald-600">🍎🌈 $1</em>');
+    formatted = formatted.replace(/(vegetables?)/gi, '<em class="text-emerald-600">🥗 $1</em>');
     
-    // Format quantities and measurements (reduced emphasis)
-    formatted = formatted.replace(/(\d+ cups?|\d+ liters?|8 cups|2 liters)/gi, '<span class="text-blue-600">$1</span>');
+    // Format quantities and measurements with emojis
+    formatted = formatted.replace(/(\d+ cups?)/gi, '<span class="text-blue-600">🥤 $1</span>');
+    formatted = formatted.replace(/(\d+ liters?)/gi, '<span class="text-blue-600">💧 $1</span>');
+    formatted = formatted.replace(/(8 cups|2 liters)/gi, '<span class="text-blue-600">💧✨ $1</span>');
     
     // Add professional spacing
     formatted = formatted.replace(/\n\s*\n/g, '</p><p class="mb-4">');
@@ -294,31 +304,39 @@ export class FriendlyResponseFormatter {
       // Remove ALL forbidden characters first
       formatted = formatted.replace(/\*\*/g, '').replace(/\*/g, '').replace(/—/g, '-').replace(/#/g, '');
       
-      // Add appropriate icons based on content (English + Russian)
+      // Add appropriate icons and emotional content based on content (English + Russian)
       if (useEmojis) {
         const lowerTip = tip.toLowerCase();
         if (lowerTip.includes('plate') || lowerTip.includes('balance')) {
-          formatted = `🍽️ ${formatted}`;
+          formatted = `🍽️✨ ${formatted}`;
         } else if (lowerTip.includes('protein') || lowerTip.includes('белок') || lowerTip.includes('muscle')) {
-          formatted = `💪 ${formatted}`;
+          formatted = `💪😊 ${formatted}`;
         } else if (lowerTip.includes('hydrat') || lowerTip.includes('water') || lowerTip.includes('cup')) {
-          formatted = `💧 ${formatted}`;
+          formatted = `💧🌟 ${formatted}`;
         } else if (lowerTip.includes('portion') || lowerTip.includes('enough') || lowerTip.includes('satisfy')) {
-          formatted = `⚖️ ${formatted}`;
+          formatted = `⚖️💫 ${formatted}`;
         } else if (lowerTip.includes('sugar') || lowerTip.includes('processed') || lowerTip.includes('limit')) {
-          formatted = `🚫 ${formatted}`;
+          formatted = `🚫💪 ${formatted}`;
         } else if (lowerTip.includes('enjoy') || lowerTip.includes('mindful') || lowerTip.includes('food')) {
-          formatted = `😌 ${formatted}`;
+          formatted = `😌🌈 ${formatted}`;
         } else if (lowerTip.includes('калори') || lowerTip.includes('ккал') || lowerTip.includes('calorie')) {
-          formatted = `🔥 ${formatted}`;
+          formatted = `🔥🎯 ${formatted}`;
         } else if (lowerTip.includes('углевод') || lowerTip.includes('grain')) {
-          formatted = `🌾 ${formatted}`;
+          formatted = `🌾🌻 ${formatted}`;
         } else if (lowerTip.includes('жир') || lowerTip.includes('fat') || lowerTip.includes('avocado') || lowerTip.includes('nuts')) {
-          formatted = `🥑 ${formatted}`;
+          formatted = `🥑💚 ${formatted}`;
         } else if (lowerTip.includes('питай') || lowerTip.includes('приём') || lowerTip.includes('meal')) {
-          formatted = `⏰ ${formatted}`;
+          formatted = `⏰🍴 ${formatted}`;
+        } else if (lowerTip.includes('fruit') || lowerTip.includes('vegetable')) {
+          formatted = `🍎🥗 ${formatted}`;
+        } else if (lowerTip.includes('exercise') || lowerTip.includes('workout')) {
+          formatted = `🏃‍♂️💪 ${formatted}`;
+        } else if (lowerTip.includes('sleep') || lowerTip.includes('rest')) {
+          formatted = `😴💤 ${formatted}`;
+        } else if (lowerTip.includes('goal') || lowerTip.includes('target')) {
+          formatted = `🎯🌟 ${formatted}`;
         } else {
-          formatted = `✨ ${formatted}`;
+          formatted = `✨🌟 ${formatted}`;
         }
       } else {
         // Use bullet points instead of asterisks
@@ -343,15 +361,15 @@ export class FriendlyResponseFormatter {
       ],
       
       friendly: [
-        emojis ? '🌟 You\'ve got this! Small consistent steps lead to amazing results.' : 'You\'ve got this! Small consistent steps lead to amazing results.',
-        emojis ? '💪 I\'m here to support you every step of the way!' : 'I\'m here to support you every step of the way!',
-        emojis ? '🎯 Focus on progress, not perfection - you\'re already on the right path!' : 'Focus on progress, not perfection - you\'re already on the right path!'
+        emojis ? '🌟✨ You\'ve got this! Small consistent steps lead to amazing results. 💪🎉' : 'You\'ve got this! Small consistent steps lead to amazing results.',
+        emojis ? '💪🤗 I\'m here to support you every step of the way! You\'re doing fantastic! 🌈💫' : 'I\'m here to support you every step of the way!',
+        emojis ? '🎯🌟 Focus on progress, not perfection - you\'re already on the right path! Keep shining! ✨😊' : 'Focus on progress, not perfection - you\'re already on the right path!'
       ],
       
       playful: [
-        emojis ? '🚀 Time to become a nutrition superhero! Your body will thank you later.' : 'Time to become a nutrition superhero! Your body will thank you later.',
-        emojis ? '✨ Consider me your friendly nutrition wizard - we\'re going to make magic happen!' : 'Consider me your friendly nutrition wizard - we\'re going to make magic happen!',
-        emojis ? '🎉 Get ready for an amazing transformation journey!' : 'Get ready for an amazing transformation journey!'
+        emojis ? '🚀💫 Time to become a nutrition superhero! Your body will thank you later! 💪🦸‍♂️✨' : 'Time to become a nutrition superhero! Your body will thank you later.',
+        emojis ? '✨🧙‍♂️ Consider me your friendly nutrition wizard - we\'re going to make magic happen! 🎩💥🌟' : 'Consider me your friendly nutrition wizard - we\'re going to make magic happen!',
+        emojis ? '🎉🌈 Get ready for an amazing transformation journey! You\'re about to feel incredible! 🚀😍' : 'Get ready for an amazing transformation journey!'
       ]
     };
 

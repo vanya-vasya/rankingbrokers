@@ -573,7 +573,7 @@ const ConversationPage = () => {
                     )}
                   >
                     <p className="text-sm font-medium">
-                      {message.role === "user" ? "You" : "Master Chef"}
+                      {message.role === "user" ? "You" : currentTool.title}
                     </p>
                     {!message.recipeData && !message.friendlyResponse && (
                       <p className="text-sm mt-1">{message.content}</p>
