@@ -44,6 +44,14 @@ import {
 
 } from "lucide-react";
 
+interface ToolModal {
+  label: string;
+  icon: LucideIcon;
+  href: string;
+  color: string;
+  bgColor: string;
+}
+
 export const GENERATIONS_PRICE = 0.05;
 
 export const MODEL_GENERATIONS_PRICE = {
@@ -223,7 +231,7 @@ export const tools = [
 
 ];
 
-export const toolsModal = [];
+export const toolsModal: ToolModal[] = [];
 
 export const navLinks = [
   {

@@ -159,23 +159,6 @@ export const ProModal = () => {
               {showPaymentWidget ? "Complete Payment" : "Buy More"}
             </div>
           </DialogTitle>
-          {!showPaymentWidget && (
-            <DialogDescription className="text-center pt-2 text-gray-700 font-medium">
-              <div className="grid grid-cols-2 gap-3">
-                {toolsModal.map((tool) => (
-                  <Card
-                    key={tool.href}
-                    className="p-4 border-gray-200 flex flex-col items-center justify-center bg-white text-gray-900 hover:shadow-md transition-shadow"
-                  >
-                    <div className="p-3 w-fit rounded-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 mb-3">
-                      <tool.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <div className="font-semibold text-sm text-center">{tool.label}</div>
-                  </Card>
-                ))}
-              </div>
-            </DialogDescription>
-          )}
         </DialogHeader>
         
         {showPaymentWidget ? (
