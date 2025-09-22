@@ -1,171 +1,189 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const Logo = () => {
-  // Array of partner logos
-  const partnerLogos = [
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  // App platform slides
+  const platformSlides = [
     {
-      src: "/logos/FreshVite-Logo.png",
-      alt: "FreshVite Healthy Food Delivery",
-      width: 512,
-      height: 188,
+      id: "android",
+      title: "Android App Coming Soon",
+      subtitle: "Get ready for the ultimate nutrition tracking experience",
+      icon: "🤖",
+      bgColor: "from-green-100 to-green-50",
+      textColor: "text-green-800",
+      accentColor: "text-green-600"
     },
     {
-      src: "/logos/NutriFlow-Logo.png",
-      alt: "NutriFlow Nutrition Consulting",
-      width: 512,
-      height: 188,
-    },
-    {
-      src: "/logos/VitalEats-Logo.png",
-      alt: "VitalEats Restaurant Group",
-      width: 512,
-      height: 188,
-    },
-    {
-      src: "/logos/FlexFit-Logo.png",
-      alt: "FlexFit Fitness Studios",
-      width: 512,
-      height: 188,
-    },
-    {
-      src: "/logos/GreenBowl-Logo.png",
-      alt: "GreenBowl Organic Meals",
-      width: 512,
-      height: 188,
-    },
-    {
-      src: "/logos/PurePlate-Logo.png",
-      alt: "PurePlate Healthy Restaurants",
-      width: 512,
-      height: 188,
-    },
-    {
-      src: "/logos/ActiveLife-Logo.png",
-      alt: "ActiveLife Wellness Center",
-      width: 512,
-      height: 188,
-    },
-    {
-      src: "/logos/WholeFresh-Logo.png",
-      alt: "WholeFresh Organic Delivery",
-      width: 512,
-      height: 188,
-    },
-    {
-      src: "/logos/ZenKitchen-Logo.png",
-      alt: "ZenKitchen Mindful Eating",
-      width: 512,
-      height: 188,
-    },
-    {
-      src: "/logos/FitFuel-Logo.png",
-      alt: "FitFuel Sports Nutrition",
-      width: 512,
-      height: 188,
-    },
+      id: "ios", 
+      title: "iOS App Coming Soon",
+      subtitle: "Seamless nutrition tracking on your iPhone",
+      icon: "📱",
+      bgColor: "from-blue-100 to-blue-50", 
+      textColor: "text-blue-800",
+      accentColor: "text-blue-600"
+    }
   ];
 
-  // Duplicate the array to create seamless loop
-  const duplicatedLogos = [...partnerLogos, ...partnerLogos];
+  // Auto-advance slides every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % platformSlides.length);
+    }, 4000);
+    
+    return () => clearInterval(timer);
+  }, [platformSlides.length]);
+
+  const handleSlideChange = (slideIndex: number) => {
+    setCurrentSlide(slideIndex);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + platformSlides.length) % platformSlides.length);
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % platformSlides.length);
+  };
 
   return (
-    <section id="partners" className="bg-white py-1 sm:py-1.5">
+    <section id="coming-soon-apps" className="bg-white py-8 sm:py-12">
       <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
-
-
-        {/* Scrolling Marquee */}
-        <div className="relative overflow-hidden">
-          {/* Gradient overlays for smooth fade effect */}
-          <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
-          
-          {/* Scrolling container */}
-          <div className="flex space-x-4 lg:space-x-6 animate-marquee">
-            {duplicatedLogos.map((logo, index) => (
+        {/* Main slider container */}
+        <div className="relative overflow-hidden rounded-2xl shadow-lg">
+          {/* Slides container */}
+          <div className="relative h-80 sm:h-96">
+            {platformSlides.map((slide, index) => (
               <div
-                key={`${logo.alt}-${index}`}
-                className="flex-shrink-0 flex items-center justify-center h-64 w-128 opacity-70 hover:opacity-100 transition-opacity duration-300"
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+                role="tabpanel"
+                aria-label={`Slide ${index + 1}: ${slide.title}`}
               >
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={logo.width}
-                  height={logo.height}
-                  className="max-h-48 w-auto object-contain"
-                />
+                <div className={`h-full bg-gradient-to-br ${slide.bgColor} flex items-center justify-center p-8 sm:p-12`}>
+                  <div className="text-center max-w-2xl">
+                    {/* Icon */}
+                    <div className="text-6xl sm:text-8xl mb-6" role="img" aria-label={`${slide.id} platform icon`}>
+                      {slide.icon}
+                    </div>
+                    
+                    {/* Title */}
+                    <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${slide.textColor} mb-4`}>
+                      {slide.title}
+                    </h2>
+                    
+                    {/* Subtitle */}
+                    <p className={`text-lg sm:text-xl ${slide.accentColor} font-medium opacity-90`}>
+                      {slide.subtitle}
+                    </p>
+                    
+                    {/* Coming soon badge */}
+                    <div className="mt-6">
+                      <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${slide.textColor} bg-white/30 backdrop-blur-sm`}>
+                        ⏰ Coming Soon
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
+
+          {/* Navigation arrows */}
+          <button
+            onClick={handlePrevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Previous slide"
+          >
+            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          
+          <button
+            onClick={handleNextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Next slide"
+          >
+            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Slide indicators */}
+        <div className="flex justify-center mt-6 space-x-2">
+          {platformSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handleSlideChange(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                index === currentSlide 
+                  ? 'bg-blue-600 scale-110' 
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
 
       <style jsx global>{`
-        :root {
-          --contact-font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-                          Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        /* Ensure smooth transitions for slider */
+        .slider-transition {
+          transition: transform 0.5s ease-in-out;
         }
 
-        .contact-heading {
-          font-family: var(--contact-font);
-          font-weight: 600;
-          font-size: 2.5rem;
-          line-height: 1.1;
-          letter-spacing: 0.01em;
-          text-transform: none;
-          color: #0f172a;
-          margin-bottom: 1rem;
+        /* Custom focus styles for better accessibility */
+        .slider-button:focus {
+          outline: 2px solid #3b82f6;
+          outline-offset: 2px;
         }
 
-        .contact-subtitle {
-          font-family: var(--contact-font);
-          font-weight: 600;
-          font-size: 1rem;
-          line-height: 1.2;
-          letter-spacing: 0.01em;
-          text-transform: none;
-          color: #0f172a;
-          margin-top: 1rem;
-        }
-
-
-
-        @media (max-width: 640px) {
-          .contact-heading {
-            font-size: 2rem;
-          }
-          .contact-subtitle {
-            font-size: 0.875rem;
+        /* Ensure proper backdrop blur support */
+        @supports (backdrop-filter: blur(4px)) {
+          .backdrop-blur-sm {
+            backdrop-filter: blur(4px);
           }
         }
 
-        @keyframes marquee-scroll {
-          0% {
-            transform: translateX(0);
+        /* Improve text readability on gradient backgrounds */
+        .gradient-text-shadow {
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive adjustments for very small screens */
+        @media (max-width: 480px) {
+          .slider-container {
+            height: 20rem;
           }
-          100% {
-            transform: translateX(-50%);
+          
+          .slider-title {
+            font-size: 1.875rem;
           }
-        }
-
-        .animate-marquee {
-          animation: marquee-scroll 20s linear infinite;
-          will-change: transform;
-        }
-
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-
-        @media (max-width: 640px) {
-          .animate-marquee {
-            animation-duration: 15s;
+          
+          .slider-subtitle {
+            font-size: 1rem;
           }
         }
 
-        .w-128 {
-          width: 32rem; /* 512px */
+        /* Animation for slide indicators */
+        @keyframes pulse-indicator {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+        }
+
+        .active-indicator {
+          animation: pulse-indicator 2s infinite;
         }
       `}</style>
     </section>
