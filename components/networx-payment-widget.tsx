@@ -174,7 +174,7 @@ export const NetworkPaymentWidget: React.FC<NetworkPaymentWidgetProps> = ({
             <Button
               onClick={createPaymentToken}
               disabled={isLoading || !email}
-              className="w-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 hover:from-cyan-500 hover:via-blue-600 hover:to-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               {isLoading ? (
                 <>
@@ -200,7 +200,7 @@ export const NetworkPaymentWidget: React.FC<NetworkPaymentWidgetProps> = ({
             <div className="space-y-2">
               <Button
                 onClick={openPaymentWidget}
-                className="w-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 hover:from-cyan-500 hover:via-blue-600 hover:to-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 disabled={!paymentUrl}
               >
                 Proceed to Payment
