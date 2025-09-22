@@ -9,11 +9,11 @@ const Logo = () => {
       id: "android",
       title: "Android App Coming Soon",
       subtitle: "Get ready for the ultimate nutrition tracking experience",
-      icon: "🤖",
       bgColor: "from-green-100 to-green-50",
       textColor: "text-green-800",
       accentColor: "text-green-600",
-      logoPlaceholder: "Google Play Store Badge",
+      logoSrc: "/logos/google-play-badge.png",
+      logoAlt: "Get it on Google Play",
       action: () => {
         // Placeholder for future Google Play Store link
         console.log("Google Play Store - Coming Soon");
@@ -23,11 +23,11 @@ const Logo = () => {
       id: "ios", 
       title: "iOS App Coming Soon",
       subtitle: "Seamless nutrition tracking on your iPhone",
-      icon: "📱",
       bgColor: "from-blue-100 to-blue-50", 
       textColor: "text-blue-800",
       accentColor: "text-blue-600",
-      logoPlaceholder: "App Store Badge",
+      logoSrc: "/logos/app-store-badge.png",
+      logoAlt: "Download on the App Store",
       action: () => {
         // Placeholder for future App Store link
         console.log("App Store - Coming Soon");
@@ -58,17 +58,8 @@ const Logo = () => {
               {/* Platform block */}
               <div className={`bg-gradient-to-br ${platform.bgColor} p-8 sm:p-10 lg:p-12 h-full min-h-[400px] flex flex-col justify-between`}>
                 <div className="text-center">
-                  {/* Icon */}
-                  <div 
-                    className="text-6xl sm:text-7xl lg:text-8xl mb-6" 
-                    role="img" 
-                    aria-label={`${platform.id} platform icon`}
-                  >
-                    {platform.icon}
-                  </div>
-                  
                   {/* Title */}
-                  <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${platform.textColor} mb-4`}>
+                  <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${platform.textColor} mb-6`}>
                     {platform.title}
                   </h2>
                   
@@ -85,21 +76,21 @@ const Logo = () => {
                   </div>
                 </div>
 
-                {/* Logo placeholder area */}
-                <div className="mt-auto">
+                {/* App Store/Google Play Badge */}
+                <div className="mt-auto flex justify-center">
                   <button
                     onClick={platform.action}
-                    className="w-full max-w-xs mx-auto block bg-black/20 hover:bg-black/30 transition-colors duration-200 rounded-lg p-4 border-2 border-dashed border-white/30 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
-                    aria-label={`Download ${platform.logoPlaceholder} - Coming soon`}
+                    className="transition-transform duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/50 rounded-lg"
+                    aria-label={`${platform.logoAlt} - Coming soon`}
                   >
-                    <div className="text-center">
-                      <div className="text-white/70 text-sm font-medium mb-2">
-                        {platform.logoPlaceholder}
-                      </div>
-                      <div className="text-white/50 text-xs">
-                        Logo placeholder
-                      </div>
-                    </div>
+                    <Image
+                      src={platform.logoSrc}
+                      alt={platform.logoAlt}
+                      width={200}
+                      height={60}
+                      className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
+                      priority
+                    />
                   </button>
                 </div>
               </div>
