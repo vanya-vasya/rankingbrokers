@@ -51,15 +51,20 @@ export function FriendlyResponseCard({
           <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-6 border border-emerald-200">
             <div className="flex items-start gap-3">
               <Sparkles className="h-5 w-5 text-emerald-600 mt-1 flex-shrink-0" />
-              <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
-                <div dangerouslySetInnerHTML={{ 
-                  __html: response.mainContent
-                    .replace(/\*\*/g, '') // Remove ** formatting
-                    .replace(/\*/g, '')   // Remove * characters
-                    .replace(/—/g, '-')   // Replace em dash with regular dash  
-                    .replace(/#/g, '')    // Remove # characters
-                    .replace(/(protein|calories|hydration|balance|portion|nutrition)/gi, '<strong class="text-emerald-700">$&</strong>') // Bold key terms
-                }} />
+              <div className="text-gray-700 leading-relaxed">
+                <div 
+                  dangerouslySetInnerHTML={{ __html: response.mainContent }}
+                  className="prose prose-emerald max-w-none
+                    prose-headings:text-emerald-800 
+                    prose-h2:text-2xl prose-h2:font-bold prose-h2:mb-4 prose-h2:mt-6
+                    prose-h3:text-xl prose-h3:font-bold prose-h3:mb-3 prose-h3:mt-6
+                    prose-h4:text-lg prose-h4:font-semibold prose-h4:mb-2 prose-h4:text-emerald-700
+                    prose-ul:space-y-2 prose-ul:mb-4
+                    prose-li:mb-2 prose-li:text-gray-700
+                    prose-p:mb-4 prose-p:text-gray-700
+                    prose-strong:text-emerald-700 prose-strong:font-semibold
+                    prose-em:text-emerald-700 prose-em:font-medium prose-em:not-italic"
+                />
               </div>
             </div>
           </div>
@@ -83,15 +88,12 @@ export function FriendlyResponseCard({
                     <span className="text-emerald-600 font-semibold text-sm">{index + 1}</span>
                   </div>
                   <div className="text-gray-700 leading-relaxed flex-1">
-                    <div dangerouslySetInnerHTML={{ 
-                      __html: item
-                        .replace(/\*\*/g, '') // Remove ** formatting
-                        .replace(/\*/g, '')   // Remove * characters
-                        .replace(/—/g, '-')   // Replace em dash with regular dash  
-                        .replace(/#/g, '')    // Remove # characters
-                        .replace(/([A-Z][a-z]+:)/g, '<strong class="text-emerald-700">$1</strong>') // Bold headers like "Balance:"
-                        .replace(/(protein|calories|hydration|balance|portion)/gi, '<strong class="text-emerald-700">$&</strong>') // Bold key nutrition terms
-                    }} />
+                    <div 
+                      dangerouslySetInnerHTML={{ __html: item }}
+                      className="prose prose-emerald max-w-none prose-sm
+                        prose-strong:text-emerald-700 prose-strong:font-semibold
+                        prose-em:text-emerald-700 prose-em:font-medium prose-em:not-italic"
+                    />
                   </div>
                 </div>
               ))}
@@ -106,15 +108,14 @@ export function FriendlyResponseCard({
               <Lightbulb className="h-5 w-5" />
               Next Steps
             </h3>
-            <div className="text-amber-700 leading-relaxed" dangerouslySetInnerHTML={{ 
-              __html: response.nextSteps
-                ?.replace(/\*\*/g, '') // Remove ** formatting
-                .replace(/\*/g, '')   // Remove * characters
-                .replace(/—/g, '-')   // Replace em dash with regular dash  
-                .replace(/#/g, '')    // Remove # characters
-                .replace(/(goals|preferences|plan|energy|muscle|weight)/gi, '<strong class="text-amber-700">$&</strong>') // Bold key terms
-              || ''
-            }} />
+            <div 
+              className="text-amber-700 leading-relaxed prose prose-amber max-w-none prose-sm
+                prose-strong:text-amber-700 prose-strong:font-semibold
+                prose-em:text-amber-700 prose-em:font-medium prose-em:not-italic" 
+              dangerouslySetInnerHTML={{ 
+                __html: response.nextSteps || ''
+              }} 
+            />
           </div>
         )}
         

@@ -222,6 +222,9 @@ export class FriendlyResponseFormatter {
     // Remove ALL forbidden characters first
     enhanced = enhanced.replace(/\*\*/g, '').replace(/\*/g, '').replace(/—/g, '-').replace(/#/g, '');
     
+    // Professional formatting for nutrition content
+    enhanced = this.formatNutritionContent(enhanced, useEmojis);
+    
     // Add visual breaks and emphasis with emojis only (no asterisks)
     enhanced = enhanced.replace(/Отлично!/g, useEmojis ? '✨ Отлично!' : 'Отлично!');
     enhanced = enhanced.replace(/важно/g, useEmojis ? '⚡ важно' : 'важно');
@@ -237,6 +240,48 @@ export class FriendlyResponseFormatter {
     enhanced = enhanced.replace(/hydration/gi, useEmojis ? '💧 hydration' : 'hydration');
     
     return enhanced;
+  }
+
+  /**
+   * Format nutrition content with professional styling
+   */
+  private formatNutritionContent(content: string, useEmojis: boolean): string {
+    // Enhanced formatting for monthly eating plans and nutrition advice
+    let formatted = content;
+    
+    // Format headers and sections
+    formatted = formatted.replace(/(Month Overview:|Week \d+:)/gi, '<h3 class="text-xl font-bold text-emerald-800 mb-3 mt-6">$1</h3>');
+    formatted = formatted.replace(/(Eating Well Made Simple)/gi, '<h2 class="text-2xl font-bold text-emerald-700 mb-4">$1</h2>');
+    
+    // Format subsections with proper headers
+    formatted = formatted.replace(/(Focus on [^-]+)/gi, '<h4 class="text-lg font-semibold text-emerald-700 mb-2">$1</h4>');
+    formatted = formatted.replace(/(Switch to [^-]+)/gi, '<h4 class="text-lg font-semibold text-emerald-700 mb-2">$1</h4>');
+    formatted = formatted.replace(/(Lean.*proteins & Healthy Fats)/gi, '<h4 class="text-lg font-semibold text-emerald-700 mb-2">$1</h4>');
+    formatted = formatted.replace(/(Mindful Portions.*hydration)/gi, '<h4 class="text-lg font-semibold text-emerald-700 mb-2">$1</h4>');
+    
+    // Format bullet points with proper styling
+    formatted = formatted.replace(/- ([^-\n]+)/g, '<li class="mb-2 text-gray-700"><span class="text-emerald-600">•</span> <strong>$1</strong></li>');
+    
+    // Wrap lists in proper containers
+    formatted = formatted.replace(/(<li[^>]*>.*<\/li>)/gs, '<ul class="space-y-2 mb-4">$1</ul>');
+    
+    // Format example sections
+    formatted = formatted.replace(/(Example:)/gi, '<strong class="text-emerald-600 italic">$1</strong>');
+    
+    // Format key nutritional terms with emphasis
+    formatted = formatted.replace(/(whole grains?|lean proteins?|healthy fats?|colorful fruits?|vegetables?)/gi, '<em class="text-emerald-700 font-medium">$1</em>');
+    
+    // Format quantities and measurements
+    formatted = formatted.replace(/(\d+ cups?|\d+ liters?|8 cups|2 liters)/gi, '<span class="font-semibold text-blue-600">$1</span>');
+    
+    // Add professional spacing
+    formatted = formatted.replace(/\n\s*\n/g, '</p><p class="mb-4">');
+    formatted = `<p class="mb-4">${formatted}</p>`;
+    
+    // Clean up any duplicate paragraph tags
+    formatted = formatted.replace(/<\/p><p class="mb-4"><p class="mb-4">/g, '</p><p class="mb-4">');
+    
+    return formatted;
   }
 
   /**
