@@ -259,8 +259,8 @@ export class FriendlyResponseFormatter {
     formatted = formatted.replace(/(Lean.*proteins & Healthy Fats)/gi, '<h4 class="text-lg font-semibold text-emerald-700 mb-2">$1</h4>');
     formatted = formatted.replace(/(Mindful Portions.*hydration)/gi, '<h4 class="text-lg font-semibold text-emerald-700 mb-2">$1</h4>');
     
-    // Format bullet points with proper styling
-    formatted = formatted.replace(/- ([^-\n]+)/g, '<li class="mb-2 text-gray-700"><span class="text-emerald-600">•</span> <strong>$1</strong></li>');
+    // Format bullet points with proper styling (reduced bold usage)
+    formatted = formatted.replace(/- ([^-\n]+)/g, '<li class="mb-2 text-gray-700"><span class="text-emerald-600">•</span> $1</li>');
     
     // Wrap lists in proper containers
     formatted = formatted.replace(/(<li[^>]*>.*<\/li>)/gs, '<ul class="space-y-2 mb-4">$1</ul>');
@@ -268,11 +268,11 @@ export class FriendlyResponseFormatter {
     // Format example sections
     formatted = formatted.replace(/(Example:)/gi, '<strong class="text-emerald-600 italic">$1</strong>');
     
-    // Format key nutritional terms with emphasis
-    formatted = formatted.replace(/(whole grains?|lean proteins?|healthy fats?|colorful fruits?|vegetables?)/gi, '<em class="text-emerald-700 font-medium">$1</em>');
+    // Format key nutritional terms with light emphasis (no bold, just color)
+    formatted = formatted.replace(/(whole grains?|lean proteins?|healthy fats?|colorful fruits?|vegetables?)/gi, '<em class="text-emerald-600">$1</em>');
     
-    // Format quantities and measurements
-    formatted = formatted.replace(/(\d+ cups?|\d+ liters?|8 cups|2 liters)/gi, '<span class="font-semibold text-blue-600">$1</span>');
+    // Format quantities and measurements (reduced emphasis)
+    formatted = formatted.replace(/(\d+ cups?|\d+ liters?|8 cups|2 liters)/gi, '<span class="text-blue-600">$1</span>');
     
     // Add professional spacing
     formatted = formatted.replace(/\n\s*\n/g, '</p><p class="mb-4">');

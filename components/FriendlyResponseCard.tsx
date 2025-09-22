@@ -62,8 +62,8 @@ export function FriendlyResponseCard({
                     prose-ul:space-y-2 prose-ul:mb-4
                     prose-li:mb-2 prose-li:text-gray-700
                     prose-p:mb-4 prose-p:text-gray-700
-                    prose-strong:text-emerald-700 prose-strong:font-semibold
-                    prose-em:text-emerald-700 prose-em:font-medium prose-em:not-italic"
+                    prose-strong:text-emerald-600 prose-strong:font-medium
+                    prose-em:text-emerald-600 prose-em:font-normal prose-em:not-italic"
                 />
               </div>
             </div>
@@ -91,8 +91,8 @@ export function FriendlyResponseCard({
                     <div 
                       dangerouslySetInnerHTML={{ __html: item }}
                       className="prose prose-emerald max-w-none prose-sm
-                        prose-strong:text-emerald-700 prose-strong:font-semibold
-                        prose-em:text-emerald-700 prose-em:font-medium prose-em:not-italic"
+                        prose-strong:text-emerald-600 prose-strong:font-medium
+                        prose-em:text-emerald-600 prose-em:font-normal prose-em:not-italic"
                     />
                   </div>
                 </div>
@@ -110,8 +110,8 @@ export function FriendlyResponseCard({
             </h3>
             <div 
               className="text-amber-700 leading-relaxed prose prose-amber max-w-none prose-sm
-                prose-strong:text-amber-700 prose-strong:font-semibold
-                prose-em:text-amber-700 prose-em:font-medium prose-em:not-italic" 
+                prose-strong:text-amber-600 prose-strong:font-medium
+                prose-em:text-amber-600 prose-em:font-normal prose-em:not-italic" 
               dangerouslySetInnerHTML={{ 
                 __html: response.nextSteps || ''
               }} 
