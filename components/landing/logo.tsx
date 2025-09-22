@@ -1,13 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
 const Logo = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  
-  // App platform slides
-  const platformSlides = [
+  // App platform data
+  const platforms = [
     {
       id: "android",
       title: "Android App Coming Soon",
@@ -15,7 +12,12 @@ const Logo = () => {
       icon: "🤖",
       bgColor: "from-green-100 to-green-50",
       textColor: "text-green-800",
-      accentColor: "text-green-600"
+      accentColor: "text-green-600",
+      logoPlaceholder: "Google Play Store Badge",
+      action: () => {
+        // Placeholder for future Google Play Store link
+        console.log("Google Play Store - Coming Soon");
+      }
     },
     {
       id: "ios", 
@@ -24,127 +26,89 @@ const Logo = () => {
       icon: "📱",
       bgColor: "from-blue-100 to-blue-50", 
       textColor: "text-blue-800",
-      accentColor: "text-blue-600"
+      accentColor: "text-blue-600",
+      logoPlaceholder: "App Store Badge",
+      action: () => {
+        // Placeholder for future App Store link
+        console.log("App Store - Coming Soon");
+      }
     }
   ];
-
-  // Auto-advance slides every 4 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % platformSlides.length);
-    }, 4000);
-    
-    return () => clearInterval(timer);
-  }, [platformSlides.length]);
-
-  const handleSlideChange = (slideIndex: number) => {
-    setCurrentSlide(slideIndex);
-  };
-
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + platformSlides.length) % platformSlides.length);
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % platformSlides.length);
-  };
 
   return (
     <section id="coming-soon-apps" className="bg-white py-8 sm:py-12">
       <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
-        {/* Main slider container */}
-        <div className="relative overflow-hidden rounded-2xl shadow-lg">
-          {/* Slides container */}
-          <div className="relative h-80 sm:h-96">
-            {platformSlides.map((slide, index) => (
-              <div
-                key={slide.id}
-                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                  index === currentSlide ? 'opacity-100' : 'opacity-0'
-                }`}
-                role="tabpanel"
-                aria-label={`Slide ${index + 1}: ${slide.title}`}
-              >
-                <div className={`h-full bg-gradient-to-br ${slide.bgColor} flex items-center justify-center p-8 sm:p-12`}>
-                  <div className="text-center max-w-2xl">
-                    {/* Icon */}
-                    <div className="text-6xl sm:text-8xl mb-6" role="img" aria-label={`${slide.id} platform icon`}>
-                      {slide.icon}
-                    </div>
-                    
-                    {/* Title */}
-                    <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${slide.textColor} mb-4`}>
-                      {slide.title}
-                    </h2>
-                    
-                    {/* Subtitle */}
-                    <p className={`text-lg sm:text-xl ${slide.accentColor} font-medium opacity-90`}>
-                      {slide.subtitle}
-                    </p>
-                    
-                    {/* Coming soon badge */}
-                    <div className="mt-6">
-                      <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${slide.textColor} bg-white/30 backdrop-blur-sm`}>
-                        ⏰ Coming Soon
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Navigation arrows */}
-          <button
-            onClick={handlePrevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label="Previous slide"
-          >
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <button
-            onClick={handleNextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label="Next slide"
-          >
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+        {/* Section title */}
+        <div className="text-center mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Get Our App
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+            Experience seamless nutrition tracking on your mobile device
+          </p>
         </div>
 
-        {/* Slide indicators */}
-        <div className="flex justify-center mt-6 space-x-2">
-          {platformSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleSlideChange(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                index === currentSlide 
-                  ? 'bg-blue-600 scale-110' 
-                  : 'bg-gray-300 hover:bg-gray-400'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+        {/* Platform blocks container */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          {platforms.map((platform) => (
+            <div
+              key={platform.id}
+              className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            >
+              {/* Platform block */}
+              <div className={`bg-gradient-to-br ${platform.bgColor} p-8 sm:p-10 lg:p-12 h-full min-h-[400px] flex flex-col justify-between`}>
+                <div className="text-center">
+                  {/* Icon */}
+                  <div 
+                    className="text-6xl sm:text-7xl lg:text-8xl mb-6" 
+                    role="img" 
+                    aria-label={`${platform.id} platform icon`}
+                  >
+                    {platform.icon}
+                  </div>
+                  
+                  {/* Title */}
+                  <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${platform.textColor} mb-4`}>
+                    {platform.title}
+                  </h2>
+                  
+                  {/* Subtitle */}
+                  <p className={`text-base sm:text-lg ${platform.accentColor} font-medium opacity-90 mb-8`}>
+                    {platform.subtitle}
+                  </p>
+                  
+                  {/* Coming soon badge */}
+                  <div className="mb-8">
+                    <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${platform.textColor} bg-white/30 backdrop-blur-sm`}>
+                      ⏰ Coming Soon
+                    </span>
+                  </div>
+                </div>
+
+                {/* Logo placeholder area */}
+                <div className="mt-auto">
+                  <button
+                    onClick={platform.action}
+                    className="w-full max-w-xs mx-auto block bg-black/20 hover:bg-black/30 transition-colors duration-200 rounded-lg p-4 border-2 border-dashed border-white/30 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                    aria-label={`Download ${platform.logoPlaceholder} - Coming soon`}
+                  >
+                    <div className="text-center">
+                      <div className="text-white/70 text-sm font-medium mb-2">
+                        {platform.logoPlaceholder}
+                      </div>
+                      <div className="text-white/50 text-xs">
+                        Logo placeholder
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
 
       <style jsx global>{`
-        /* Ensure smooth transitions for slider */
-        .slider-transition {
-          transition: transform 0.5s ease-in-out;
-        }
-
-        /* Custom focus styles for better accessibility */
-        .slider-button:focus {
-          outline: 2px solid #3b82f6;
-          outline-offset: 2px;
-        }
-
         /* Ensure proper backdrop blur support */
         @supports (backdrop-filter: blur(4px)) {
           .backdrop-blur-sm {
@@ -153,37 +117,47 @@ const Logo = () => {
         }
 
         /* Improve text readability on gradient backgrounds */
-        .gradient-text-shadow {
+        .platform-block {
           text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Custom hover effects for platform blocks */
+        .platform-block:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         /* Responsive adjustments for very small screens */
         @media (max-width: 480px) {
-          .slider-container {
-            height: 20rem;
+          .platform-block {
+            min-height: 350px;
+            padding: 1.5rem;
           }
           
-          .slider-title {
-            font-size: 1.875rem;
+          .platform-title {
+            font-size: 1.5rem;
           }
           
-          .slider-subtitle {
-            font-size: 1rem;
+          .platform-subtitle {
+            font-size: 0.875rem;
+          }
+
+          .platform-icon {
+            font-size: 4rem;
           }
         }
 
-        /* Animation for slide indicators */
-        @keyframes pulse-indicator {
-          0%, 100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.1);
+        /* Ensure grid layout works properly on all devices */
+        @media (max-width: 1023px) {
+          .platform-grid {
+            grid-template-columns: 1fr;
           }
         }
 
-        .active-indicator {
-          animation: pulse-indicator 2s infinite;
+        /* Focus styles for accessibility */
+        .logo-placeholder:focus {
+          outline: 2px solid rgba(255, 255, 255, 0.8);
+          outline-offset: 2px;
         }
       `}</style>
     </section>
