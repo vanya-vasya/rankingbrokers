@@ -11,9 +11,18 @@ const Logo = () => {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Get Our App
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-            Experience seamless nutrition tracking on your mobile device. Coming Soon
-          </p>
+          <div className="max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 mb-3">
+              Experience seamless nutrition tracking on your mobile device.
+            </p>
+            <div 
+              className="text-xl sm:text-2xl font-semibold text-green-600 tracking-wide uppercase"
+              role="status"
+              aria-label="Application status: Coming Soon"
+            >
+              Coming Soon
+            </div>
+          </div>
         </div>
 
         {/* App Store Logos - 3x Larger */}

@@ -176,6 +176,21 @@ export const ProModal = () => {
                 {watch("generations")} Generations - {(watch("generations") * generationPrice).toFixed(2)} {watch("currency")}
               </div>
             </div>
+
+            {/* Payment Token Button */}
+            <div className="mb-4">
+              <Button
+                onClick={() => {
+                  // Handle payment token logic here
+                  toast.success("Payment token generated!");
+                }}
+                className="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                size="lg"
+              >
+                Generate Payment Token
+                <Zap className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
             
             <NetworkPaymentWidget
               amount={watch("generations") * generationPrice}
