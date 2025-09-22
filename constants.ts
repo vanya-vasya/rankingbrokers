@@ -63,28 +63,7 @@ export const MODEL_GENERATIONS_PRICE = {
 // Определение типов профессий для фильтров
 export type Profession = "video" | "art" | "content" | "all";
 
-export const professions = [
-  {
-    id: "video",
-    label: "Co-Director",
-    bgColor: "bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-600",
-    borderColor: "border-transparent",
-    textColor: "text-white",
-    iconColor: "text-white",
-    icon: Crown,
-  },
-
-
-  {
-    id: "content",
-    label: "Creative Partner",
-    bgColor: "bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-600",
-    borderColor: "border-transparent",
-    textColor: "text-white",
-    iconColor: "text-white",
-    icon: Diamond,
-  },
-];
+export const professions = [];
 
 export const tools = [
   // Базовые инструменты
@@ -244,24 +223,7 @@ export const tools = [
 
 ];
 
-export const toolsModal = [
-  {
-    label: "Co-Director",
-    icon: Crown,
-    href: "/dashboard/conversation",
-    color: "text-violet-500",
-    bgColor: "bg-violet-500/10",
-  },
-
-
-  {
-    label: "Creative Partner",
-    icon: Diamond,
-    href: "/dashboard/music",
-    color: "text-emerald-500",
-    bgColor: "bg-emerald-500/10",
-  },
-];
+export const toolsModal = [];
 
 export const navLinks = [
   {

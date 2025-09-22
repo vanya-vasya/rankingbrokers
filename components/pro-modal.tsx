@@ -167,7 +167,7 @@ export const ProModal = () => {
                     key={tool.href}
                     className="p-4 border-gray-200 flex flex-col items-center justify-center bg-white text-gray-900 hover:shadow-md transition-shadow"
                   >
-                    <div className="p-3 w-fit rounded-lg bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 mb-3">
+                    <div className="p-3 w-fit rounded-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 mb-3">
                       <tool.icon className="w-8 h-8 text-white" />
                     </div>
                     <div className="font-semibold text-sm text-center">{tool.label}</div>
@@ -227,7 +227,7 @@ export const ProModal = () => {
                       bg-white text-black
                       ${
                         watch("currency")
-                          ? "border-cyan-500"
+                          ? "border-green-500"
                           : "border-gray-300"
                       }
                       outline-none ring-0 focus:outline-none focus:ring-0 active:ring-0
@@ -246,7 +246,7 @@ export const ProModal = () => {
                             bg-white text-black
                             ${
                               active
-                                ? "bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 text-white font-medium"
+                                ? "bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-medium"
                                 : "border border-transparent hover:bg-gray-50"
                             }`
                           }
@@ -284,7 +284,7 @@ export const ProModal = () => {
                     "!active:bg-gray-50 !active:text-gray-900 !active:border-gray-400",
                     "focus:outline-none ring-0 focus:ring-0 active:ring-0 transition-all duration-300 shadow-sm",
                     {
-                      "!bg-gradient-to-r !from-cyan-400 !via-blue-500 !to-indigo-600 !text-white !border-transparent !shadow-lg":
+                      "!bg-gradient-to-r !from-green-400 !via-green-500 !to-green-600 !text-white !border-transparent !shadow-lg":
                         activeButton === value,
                     }
                   )}
@@ -309,7 +309,7 @@ export const ProModal = () => {
                   "!active:bg-gray-50 !active:text-gray-900 !active:border-gray-400",
                   "focus:outline-none ring-0 focus:ring-0 active:ring-0 transition-all duration-300 shadow-sm",
                   {
-                    "!bg-gradient-to-r !from-cyan-400 !via-blue-500 !to-indigo-600 !text-white !border-transparent !shadow-lg":
+                    "!bg-gradient-to-r !from-green-400 !via-green-500 !to-green-600 !text-white !border-transparent !shadow-lg":
                       activeButton === 999,
                   }
                 )}
@@ -327,7 +327,7 @@ export const ProModal = () => {
                 {...register("policies")}
                 checked={watch("policies")}
                 onChange={handleCheckboxChange}
-                className="group block w-[1rem] h-[1rem] rounded border border-gray-300 bg-white data-[checked]:bg-gradient-to-r data-[checked]:from-cyan-400 data-[checked]:via-blue-500 data-[checked]:to-indigo-600"
+                className="group block w-[1rem] h-[1rem] rounded border border-gray-300 bg-white data-[checked]:bg-gradient-to-r data-[checked]:from-green-400 data-[checked]:via-green-500 data-[checked]:to-green-600"
               >
                 <svg
                   className="stroke-white opacity-0 group-data-[checked]:opacity-100"
@@ -348,14 +348,14 @@ export const ProModal = () => {
                 I agree to the{" "}
                 <a
                   href="/terms-and-conditions"
-                  className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent hover:underline hover:underline-offset-4"
+                  className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent hover:underline hover:underline-offset-4"
                 >
                   Terms of Service
                 </a>{" "}
                 and{" "}
                 <a
                   href="/privacy-policy"
-                  className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent hover:underline hover:underline-offset-4"
+                  className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent hover:underline hover:underline-offset-4"
                 >
                   Privacy Policy
                 </a>
@@ -376,7 +376,7 @@ export const ProModal = () => {
                 disabled={loading}
                 size="lg"
                 type="submit"
-                className="w-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 hover:from-cyan-500 hover:via-blue-600 hover:to-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Buy Generations
                 <Zap className="w-4 h-4 ml-2 fill-white" />
