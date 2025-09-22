@@ -24,6 +24,7 @@ import { Activity, Target, AlertCircle } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { RecipeCard } from "@/components/RecipeCard";
 import { FriendlyResponseCard } from "@/components/FriendlyResponseCard";
+import { CalTrackerNutritionCard } from "@/components/CalTrackerNutritionCard";
 import { friendlyFormatter, FriendlyResponse } from "@/lib/friendly-response-formatter";
 
 import { getFormSchema } from "./constants";
@@ -37,6 +38,7 @@ type ChatCompletionRequestMessage = {
   content: string;
   recipeData?: Recipe; // Optional recipe data for structured responses
   friendlyResponse?: FriendlyResponse; // Friendly formatted response for Master Nutritionist
+  nutritionData?: NutritionData; // Simple nutritional data for Cal Tracker
 };
 
 // Recipe type for structured recipe responses
@@ -47,6 +49,43 @@ type Recipe = {
   fat: number;
   carb: number;
   recipe: string; // markdown
+};
+
+// Nutrition data type for Cal Tracker responses
+type NutritionData = {
+  dish: string;
+  kcal: number;
+  prot: number;
+  fat: number;
+  carb: number;
+};
+
+// Helper function to parse simple nutrition JSON for Cal Tracker
+const parseNutritionResponse = (response: string): { text: string; nutrition?: NutritionData } => {
+  try {
+    // Try to parse as JSON first
+    const parsed = JSON.parse(response);
+    
+    // Check if it's a simple nutrition object (without recipe field)
+    if (parsed && typeof parsed === 'object' && 
+        parsed.dish && 
+        typeof parsed.kcal === 'number' && 
+        typeof parsed.prot === 'number' && 
+        typeof parsed.fat === 'number' && 
+        typeof parsed.carb === 'number' && 
+        !parsed.recipe) { // Important: no recipe field for simple nutrition data
+      return {
+        text: response, // Keep original JSON as text fallback
+        nutrition: parsed as NutritionData
+      };
+    }
+    
+    // If it's JSON but not a simple nutrition format, return as text
+    return { text: typeof parsed === 'string' ? parsed : JSON.stringify(parsed, null, 2) };
+  } catch (error) {
+    // Not valid JSON, return as plain text
+    return { text: response };
+  }
 };
 
 // Helper function to parse JSON response and extract recipe data
@@ -288,8 +327,31 @@ const ConversationPage = () => {
         let assistantMessage: ChatCompletionRequestMessage;
         let successMessage: string;
 
-        // Handle Master Nutritionist and Cal Tracker responses with friendly formatting
-        if (toolId === 'master-nutritionist' || toolId === 'cal-tracker') {
+        // Handle Cal Tracker responses - check for simple nutrition JSON first
+        if (toolId === 'cal-tracker') {
+          const nutritionParsed = parseNutritionResponse(webhookResponse.data.response);
+          
+          if (nutritionParsed.nutrition) {
+            // Simple nutrition data - use CalTrackerNutritionCard
+            assistantMessage = {
+              role: "assistant",
+              content: `Nutritional analysis for ${nutritionParsed.nutrition.dish}`,
+              nutritionData: nutritionParsed.nutrition,
+            };
+          } else {
+            // Complex response - use friendly formatting
+            const friendlyResponse = friendlyFormatter.formatResponse(webhookResponse.data.response);
+            assistantMessage = {
+              role: "assistant",
+              content: friendlyResponse.greeting,
+              friendlyResponse: friendlyResponse,
+            };
+          }
+          
+          successMessage = `🎯 Calorie tracking analysis ready in ${(webhookResponse.data.processingTime / 1000).toFixed(1)}s!`;
+          
+        } else if (toolId === 'master-nutritionist') {
+          // Handle Master Nutritionist responses with friendly formatting
           const friendlyResponse = friendlyFormatter.formatResponse(webhookResponse.data.response);
           
           assistantMessage = {
@@ -298,11 +360,7 @@ const ConversationPage = () => {
             friendlyResponse: friendlyResponse, // Include full friendly response data
           };
           
-          if (toolId === 'cal-tracker') {
-            successMessage = `🎯 Calorie tracking analysis ready in ${(webhookResponse.data.processingTime / 1000).toFixed(1)}s!`;
-          } else {
-            successMessage = `✨ Personalized nutrition guidance ready in ${(webhookResponse.data.processingTime / 1000).toFixed(1)}s!`;
-          }
+          successMessage = `✨ Personalized nutrition guidance ready in ${(webhookResponse.data.processingTime / 1000).toFixed(1)}s!`;
         } else {
           // Handle other tools with recipe parsing
           const parsedResponse = parseRecipeResponse(webhookResponse.data.response);
@@ -575,15 +633,25 @@ const ConversationPage = () => {
                     <p className="text-sm font-medium">
                       {message.role === "user" ? "You" : currentTool.title}
                     </p>
-                    {!message.recipeData && !message.friendlyResponse && (
+                    {!message.recipeData && !message.friendlyResponse && !message.nutritionData && (
                       <p className="text-sm mt-1">{message.content}</p>
                     )}
                   </div>
                   {message.role === "user" && <UserAvatar />}
                 </div>
 
+                {/* Cal Tracker nutrition card for simple nutritional data */}
+                {message.role === "assistant" && message.nutritionData && (
+                  <div className="w-full">
+                    <CalTrackerNutritionCard 
+                      data={message.nutritionData} 
+                      gradient={currentTool.gradient}
+                    />
+                  </div>
+                )}
+
                 {/* Friendly response card for Master Nutritionist and Cal Tracker */}
-                {message.role === "assistant" && message.friendlyResponse && (
+                {message.role === "assistant" && message.friendlyResponse && !message.nutritionData && (
                   <div className="w-full">
                     <FriendlyResponseCard 
                       response={message.friendlyResponse} 
@@ -594,7 +662,7 @@ const ConversationPage = () => {
                 )}
 
                 {/* Recipe card for structured responses */}
-                {message.role === "assistant" && message.recipeData && !message.friendlyResponse && (
+                {message.role === "assistant" && message.recipeData && !message.friendlyResponse && !message.nutritionData && (
                   <div className="w-full">
                     <RecipeCard 
                       data={message.recipeData} 
@@ -604,7 +672,7 @@ const ConversationPage = () => {
                 )}
 
                 {/* Fallback text for non-structured assistant responses */}
-                {message.role === "assistant" && !message.recipeData && !message.friendlyResponse && (
+                {message.role === "assistant" && !message.recipeData && !message.friendlyResponse && !message.nutritionData && (
                   <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4">
                     <pre className="text-sm text-gray-700 whitespace-pre-wrap font-mono bg-gray-50 p-3 rounded border">
                       {message.content}
