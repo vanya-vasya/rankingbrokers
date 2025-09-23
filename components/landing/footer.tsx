@@ -61,8 +61,8 @@ const Footer = () => {
 
   return (
     <footer className="main-footer max-w-[1350px] mx-auto bg-white">
-      <div className="main-footer__top">
-        <div className="px-4">
+      <div className="main-footer__top bg-white">
+        <div className="px-4 bg-white">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             <div className="pr-4 pl-4">
               <div className="footer-widget__column footer-widget__about">
@@ -195,8 +195,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="main-footer__bottom">
-        <div className="flex justify-between items-center px-4 mx-4">
+      <div className="main-footer__bottom bg-white">
+        <div className="flex justify-between items-center px-4 mx-4 bg-white">
           <div className="">
             <p 
               className="text-center"

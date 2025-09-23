@@ -60,8 +60,8 @@ const Pricing = () => {
   const [customAmount, setCustomAmount] = useState("");
 
   const handleGetStarted = (tierId: string) => {
-    // Handle payment logic here
-    console.log(`Get started with ${tierId}`);
+    // Redirect to dashboard
+    window.location.href = "https://www.yum-mi.com/dashboard";
   };
 
   return (
