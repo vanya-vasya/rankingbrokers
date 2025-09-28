@@ -19,7 +19,7 @@
     left: 0;
     right: 0;
     height: 315px;
-    background: linear-gradient(180deg, rgba(16, 16, 34, 0.00) 0%, rgba(16, 16, 34, 0.76) 13.28%, #101022 53.79%, #101022 79.45%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.76) 13.28%, #ffffff 53.79%, #ffffff 79.45%);
     z-index: 1;
 }
 
