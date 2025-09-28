@@ -208,7 +208,7 @@ const TransformationForm = ({
                   <SelectTrigger className="select-field text-white">
                     <SelectValue placeholder="Select size" />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-900 text-white">
+                  <SelectContent className="bg-white text-white">
                     {Object.keys(aspectRatioOptions).map((key) => (
                       <SelectItem key={key} value={key} className="select-item">
                         {aspectRatioOptions[key as AspectRatioKey].label}

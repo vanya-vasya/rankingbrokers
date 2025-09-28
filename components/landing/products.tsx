@@ -145,7 +145,7 @@ const Products = () => {
                         loading="lazy"
                       />
                     ) : (
-                      <div className="absolute inset-0 h-full w-full bg-slate-800">
+                      <div className="absolute inset-0 h-full w-full bg-white">
                         <ChatInterface />
                       </div>
                     )}

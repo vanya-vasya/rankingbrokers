@@ -16,7 +16,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       <main
         className={cn(
-          "bg-[#0f172a] text-[#A1AAC9] overflow-x-hidden h-full flex flex-col justify-between",
+          "bg-white text-[#A1AAC9] overflow-x-hidden h-full flex flex-col justify-between",
           nunito.className
         )}
       >

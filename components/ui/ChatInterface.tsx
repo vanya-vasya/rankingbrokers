@@ -16,7 +16,7 @@ const ChatInterface = () => {
         </div>{" "}
         <div className="flex-1">
           <div className="font-medium mb-1 text-white">You</div>
-          <div className="bg-slate-700 rounded-lg p-4 shadow-sm dark:text-gray-200">
+          <div className="bg-white rounded-lg p-4 shadow-sm dark:text-gray-200">
             Create a 30-second script for a product video about a new smartphone
             camera with advanced AI features.
           </div>
@@ -35,7 +35,7 @@ const ChatInterface = () => {
         </div>
         <div className="flex-1">
           <div className="font-medium text-white mb-1">Yum-mi</div>
-          <div className="bg-slate-700 rounded-lg p-4 shadow-sm dark:text-gray-200">
+          <div className="bg-white rounded-lg p-4 shadow-sm dark:text-gray-200">
             <strong>SMARTPHONE AI CAMERA - 30 SEC SCRIPT</strong>
             <br />
             <br />

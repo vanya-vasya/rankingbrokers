@@ -97,7 +97,7 @@ const MediaUploader = ({
             </>
           ) : (
             <div
-              className="flex justify-center items-center h-72 cursor-pointer flex-col gap-5 border bg-slate-800 border-slate-800 bg-card text-card-foreground shadow-inner rounded-lg overflow-hidden"
+              className="flex justify-center items-center h-72 cursor-pointer flex-col gap-5 border bg-white border-slate-800 bg-card text-card-foreground shadow-inner rounded-lg overflow-hidden"
               onClick={() => openUploader(open)}
             >
               <div className="rounded-[16px p-5 shadow-sm">

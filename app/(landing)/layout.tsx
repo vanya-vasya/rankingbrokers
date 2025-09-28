@@ -14,7 +14,7 @@ const nunito = Nunito({
 const LandingLayout = ({ children }: { children: React.ReactNode; }) => {
     return (
       <>
-      <main className={cn("bg-[#0f172a] text-[#A1AAC9] overflow-x-hidden h-full flex flex-col justify-between", nunito.className)}>
+      <main className={cn("bg-white text-[#A1AAC9] overflow-x-hidden h-full flex flex-col justify-between", nunito.className)}>
           <Header/>
             {children}
           <Footer/> 

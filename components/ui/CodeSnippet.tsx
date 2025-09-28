@@ -1,7 +1,7 @@
 // components/landing/CodeSnippet.tsx
 const CodeSnippet = () => {
     return (
-      <div className="bg-slate-800 border-slate-800 p-4 rounded-lg text-white">
+      <div className="bg-white border-slate-800 p-4 rounded-lg text-white">
         <pre>
           <code>
             {`import numpy as np

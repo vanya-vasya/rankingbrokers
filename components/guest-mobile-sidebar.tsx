@@ -40,7 +40,7 @@ export const GuestMobileSidebar = () => {
       </Button>
     </SheetTrigger>
       <SheetContent side="left" className="p-0 border-r-0">
-        <div className="space-y-4 py-6 px-6 flex flex-col h-full bg-[#0f172a] sm:ring-1 sm:ring-[#3c3c77] text-white border-none">
+        <div className="space-y-4 py-6 px-6 flex flex-col h-full bg-white sm:ring-1 sm:ring-[#3c3c77] text-white border-none">
           <div className="px-3 py-2 flex-1">
             <Link href="/dashboard" className="flex items-center pl-3 mb-14">
               <Image width={"150"} height={"60"} className="mr-4" alt="Yum-mi Logo" src="/logos/yum-mi-onigiri-logo.png" />

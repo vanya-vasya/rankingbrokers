@@ -23,8 +23,8 @@
     --thm-gray-bg-rgb: 133, 133, 133;
     --thm-bdr-color: #3C3C77;
     --thm-bdr-color-rgb: 60, 60, 119;
-    --thm-body-bg: #cbcfd8;
-    --thm-main-bg: #d0d0dd;
+    --thm-body-bg: #ffffff;
+    --thm-main-bg: #ffffff;
     --thm-border-radius: 8px;
     --thm-gradient-color1: #8F79FF;
     --thm-gradient-color2: #426BFF;
@@ -523,7 +523,7 @@ img {
     text-transform: capitalize;
     padding: 11px 18px 11px 18px;
     border-radius: 8px;
-    background: #20293C;
+    background: #ffffff;
     box-shadow: 0px 20px 24px -10px #0B042F;
     background-size: 200% auto;
     font-family: var(--thm-font-two);

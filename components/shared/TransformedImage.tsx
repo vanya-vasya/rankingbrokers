@@ -91,7 +91,7 @@ const TransformedImage = ({ image, type, title, transformationConfig, isTransfor
           )}
         </div>
       ): (
-        <div className="flex justify-center items-center bg-slate-800 border-slate-800 text-muted-foreground text-sm h-72 md:h-full flex-col gap-5 border bg-card shadow-inner rounded-lg overflow-hidden">
+        <div className="flex justify-center items-center bg-white border-slate-800 text-muted-foreground text-sm h-72 md:h-full flex-col gap-5 border bg-card shadow-inner rounded-lg overflow-hidden">
           Transformed Image
         </div>
       )}

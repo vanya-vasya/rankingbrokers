@@ -11,7 +11,7 @@ import {
 } from "@react-pdf/renderer";
 
 const colors = {
-  background: "#0f172a",
+  background: "#ffffff",
   textColor1: "#ffffff",
   textColor2: "#a1aac0",
   textColor3: "#525f7f",
