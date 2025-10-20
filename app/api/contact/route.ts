@@ -1,5 +1,4 @@
 import { mailOptions, transporter } from "@/config/nodemailer";
-import axios from "axios";
 import { NextResponse } from "next/server";
 
 const CONTACT_MESSAGE_FIELDS: { [key: string]: string } = {
@@ -37,18 +36,13 @@ const generateEmailContent = (data: ContactMessageFields) => {
 async function verifyRecaptchaToken(token: string): Promise<boolean> {
   const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 
-  const response = await axios.post<{ success: boolean }>(
-    `https://www.google.com/recaptcha/api/siteverify`,
-    null,
-    {
-      params: {
-        secret: RECAPTCHA_SECRET_KEY,
-        response: token,
-      },
-    }
+  const response = await fetch(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET_KEY}&response=${token}`,
+    { method: 'POST' }
   );
 
-  return response.data.success;
+  const data = await response.json();
+  return data.success;
 }
 
 export const maxDuration = 60;

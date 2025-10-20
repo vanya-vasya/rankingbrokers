@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { GuestMobileSidebar } from "@/components/guest-mobile-sidebar";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -20,15 +19,15 @@ const routes = [
 const productItems = [
   {
     name: "Master Chef",
-    href: "/dashboard",
+    href: "#",
   },
   {
     name: "Master Nutritionist",
-    href: "/dashboard",
+    href: "#",
   },
   {
     name: "Cal Tracker",
-    href: "/dashboard",
+    href: "#",
   },
   {
     name: "Digest",
@@ -113,36 +112,19 @@ const Header = () => {
           <div className="flex ">
             <ul className="main-header__login-sing-up">
               <li>
-                <SignedIn>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="nav-container-green">
-                      <Link
-                        href="/dashboard"
-                        className="nav-link"
-                      >
-                        Dashboard
-                      </Link>
-                    </div>
-                  </motion.div>
-                </SignedIn>
-                <SignedOut>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="nav-container-green">
-                      <Link
-                        href="/dashboard"
-                        className="nav-link"
-                      >
-                        Begin
-                      </Link>
-                    </div>
-                  </motion.div>
-                </SignedOut>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="nav-container-green">
+                    <Link
+                      href="/#pricing"
+                      className="nav-link"
+                    >
+                      Get Started
+                    </Link>
+                  </div>
+                </motion.div>
               </li>
             </ul>
           </div>
