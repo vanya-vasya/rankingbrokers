@@ -1,254 +1,149 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-// Removed unused imports 
-import Image from 'next/image';
 import Link from "next/link";
 
-const creativeTools = [
+const brokerGuides = [
   {
-    title: "Master Chef",
-    description: "Turn a photo of ingredients into a ready-to-cook recipe",
-    image: "/images/resource/master-chef-transformation.jpg",
-    type: "image",
+    id: "fx",
+    icon: "FX",
+    title: "Best Forex Broker",
+    guides: [
+      "Best Forex Brokers 2025 (Overall)",
+      "Best Low-Spread Forex Brokers", 
+      "Best ECN/STP Forex Brokers",
+      "Best Forex Brokers for Beginners"
+    ]
   },
   {
-    title: "Master Nutritionist", 
-    description: "Personalized nutrition that adapts to your age, goals, and allergies",
-    image: "/images/resource/master-nutritionist-personalized.jpg",
-    type: "image",
+    id: "crypto",
+    icon: "Ξ",
+    title: "Best Crypto Broker",
+    guides: [
+      "Best Crypto Brokers 2025 (Overall)",
+      "Best Crypto Derivatives Brokers",
+      "Best Copy-Trading Crypto Platforms", 
+      "Crypto Brokers with Lowest Fees"
+    ]
   },
   {
-    title: "Cal Tracker",
-    description: "Computer-vision macros and calorie counts in real time",
-    image: "/images/resource/cal-tracker-computer-vision.jpg",
-    type: "image", 
-  },
-  {
-    title: "Digest",
-    description: "Coming Soon",
-    image: "/images/resource/digest-recommendations-coming-soon.jpg",
-    type: "image",
-  },
+    id: "region",
+    icon: "EU",
+    title: "Best Broker by Region",
+    guides: [
+      "Best Brokers in EU (MiFID II)",
+      "Best Brokers in UK (FCA)",
+      "Best Brokers in UAE (DFSA/ADGM)",
+      "Best Brokers in South Africa (FSCA)"
+    ]
+  }
 ];
 
 const Products = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [autoplay, setAutoplay] = useState(true);
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout | undefined;
-    if (autoplay) {
-      interval = setInterval(() => {
-        setActiveIndex((current) => (current + 1) % creativeTools.length);
-      }, 5000);
-    }
-    return () => clearInterval(interval);
-  }, [autoplay]);
-
-  const handleDotClick = (index: number) => {
-    setActiveIndex(index);
-    setAutoplay(false);
-    // Restart autoplay after 10 seconds of inactivity
-    setTimeout(() => setAutoplay(true), 10000);
-  };
-
-  // Calculate the visible tools (current, prev, next)
-  const getPrevIndex = (index: number) =>
-    index === 0 ? creativeTools.length - 1 : index - 1;
-  const getNextIndex = (index: number) =>
-    index === creativeTools.length - 1 ? 0 : index + 1;
-
   return (
-    <section id="products"  className="relative overflow-hidden py-16 md:py-24 lg:py-32 bg-slate-50">
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]"></div>
-
-      {/* Background elements */}
-
-      <div className="container relative mx-auto px-4">
-        <div className="mx-auto flex max-w-3xl flex-col items-center space-y-8 text-center mb-16">
+    <section id="products" className="relative overflow-hidden py-16 md:py-24 lg:py-32 bg-white">
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        {/* Header Section */}
+        <div className="text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
-            style={{
-              fontFamily: "var(--contact-font)",
-              fontWeight: 600,
-              fontSize: '2.5rem',
-              lineHeight: 1.1,
-              letterSpacing: '0.01em',
-              textTransform: 'none',
-              color: '#1e293b',
-              marginBottom: '1rem'
-            }}
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
           >
-            Our Core Products
+            Broker Selection Guides
           </motion.h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Twelve curated, high-intent articles to help users choose a trusted broker by market, method, and region.
+          </p>
         </div>
 
-        {/* 3D Card Slider */}
-        <div className="relative h-[500px] w-full max-w-6xl mx-auto">
-          {creativeTools.map((tool, index) => {
-            // Determine if this card is active, previous, or next
-            const isActive = index === activeIndex;
-            const isPrev = index === getPrevIndex(activeIndex);
-            const isNext = index === getNextIndex(activeIndex);
-            const isVisible = isActive || isPrev || isNext;
-
-            if (!isVisible) return null;
-
-            let position: "center" | "left" | "right";
-            if (isActive) position = "center";
-            else if (isPrev) position = "left";
-            else position = "right";
-
-            return (
-              <motion.div
-                key={index}
-                initial={false}
-                animate={{
-                  x:
-                    position === "center"
-                      ? 0
-                      : position === "left"
-                      ? "-55%"
-                      : "55%",
-                  scale: position === "center" ? 1 : 0.8,
-                  opacity: position === "center" ? 1 : 0.6,
-                  zIndex: position === "center" ? 30 : 10,
-                  rotateY:
-                    position === "center" ? 0 : position === "left" ? 15 : -15,
-                }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="absolute top-0 left-0 right-0 mx-auto w-full max-w-2xl h-[500px] cursor-pointer perspective-1000"
-                onClick={() => {
-                  if (!isActive) {
-                    setActiveIndex(index);
-                    setAutoplay(false);
-                    setTimeout(() => setAutoplay(true), 10000);
-                  }
-                }}
-              >
-                <div className="relative w-full h-full transform-style-3d rounded-2xl shadow-lg overflow-hidden">
-                  {/* Background content */}
-                  <div className="absolute inset-0 z-0">
-                    {tool.type === "image" && tool.image ? (
-                      <Image
-                        src={tool.image}
-                        alt={tool.title}
-                        width={800}
-                        height={600}
-                        className="absolute inset-0 h-full w-full object-cover object-center"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
-                        <div className="text-white text-4xl font-bold opacity-50">
-                          Chat Interface
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-transparent z-10"></div>
-
-                  {/* Glowing border */}
-                  <div
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 opacity-0 hover:opacity-20 blur transition-opacity"
-                  ></div>
-
-                  {/* Content */}
-                  <div className="absolute inset-0 z-20 p-8 flex flex-col justify-end">
-                    <div className="text-left">
-                      <h3 className="mb-4 text-3xl font-extrabold leading-9 text-white sm:text-4xl sm:leading-10">
-                        {tool.title}
-                      </h3>
-
-                      <p 
-                        className="mb-6 max-w-md text-white"
-                        style={{
-                          fontFamily: "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-                          fontWeight: 600,
-                          fontSize: '1rem',
-                          lineHeight: 1.2,
-                          letterSpacing: '0.01em',
-                          textTransform: 'none'
-                        }}
-                      >
-                        {tool.description}
-                      </p>
-                    </div>
-                  </div>
+        {/* Guide Categories Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {brokerGuides.map((category, index) => (
+            <motion.div
+              key={category.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 hover:shadow-lg transition-shadow duration-300"
+            >
+              {/* Category Icon and Title */}
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-50 to-blue-50 flex items-center justify-center mr-4">
+                  <span className="text-2xl font-bold text-indigo-600">
+                    {category.icon}
+                  </span>
                 </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    {category.title}
+                  </h3>
+                </div>
+              </div>
 
-        {/* Navigation dots */}
-        <div className="flex justify-center mt-12 space-x-4">
-          {creativeTools.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleDotClick(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === activeIndex
-                  ? "bg-white w-8"
-                  : "bg-gray-500 opacity-50 hover:opacity-75"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+              {/* Guide Links */}
+              <div className="space-y-3">
+                {category.guides.map((guide, guideIndex) => (
+                  <Link
+                    key={guideIndex}
+                    href={`/guides/${category.id}/${guide.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '')}`}
+                    className="block p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-700 group-hover:text-indigo-600 transition-colors duration-200">
+                        {guide}
+                      </span>
+                      <svg
+                        className="w-4 h-4 text-gray-400 group-hover:text-indigo-600 transition-colors duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Link
+              href="/guides"
+              className="inline-flex items-center px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl"
+            >
+              View All Guides
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </Link>
+          </motion.div>
+        </div>
       </div>
-
-      <style jsx global>{`
-        .nav-container-green {
-          display: flex;
-          background-color: #86efac;
-          border-radius: 9999px;
-          padding: 4px;
-          gap: 4px;
-        }
-
-        .nav-link {
-          font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 1.1;
-          letter-spacing: 0.01em;
-          text-transform: none;
-          color: #0f172a;
-          padding: 8px 16px;
-          border-radius: 9999px;
-          transition: all 500ms ease-in-out;
-          text-decoration: none;
-        }
-
-        .main-header__login-sing-up .nav-link {
-          font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
-          font-weight: 600 !important;
-          font-size: 16px !important;
-          line-height: 1.1 !important;
-          letter-spacing: 0.01em !important;
-          text-transform: none !important;
-          color: #0f172a !important;
-          padding: 8px 16px !important;
-          border-radius: 9999px !important;
-          border: none !important;
-        }
-
-        .nav-link:hover {
-          background: linear-gradient(to right, #10b981, #059669, #047857);
-          background-clip: text;
-          -webkit-background-clip: text;
-          color: transparent;
-          text-decoration: none;
-        }
-      `}</style>
     </section>
   );
 };
