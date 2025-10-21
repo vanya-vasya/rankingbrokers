@@ -180,22 +180,6 @@ const Products = () => {
                       >
                         {tool.description}
                       </p>
-
-                      <div className="main-header__login-sing-up">
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <div className="nav-container-green">
-                            <Link
-                              href="/dashboard"
-                              className="nav-link"
-                            >
-                              Begin
-                            </Link>
-                          </div>
-                        </motion.div>
-                      </div>
                     </div>
                   </div>
                 </div>

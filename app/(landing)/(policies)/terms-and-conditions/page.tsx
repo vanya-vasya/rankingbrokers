@@ -1,5 +1,3 @@
-import CTA from "@/components/landing/cta";
-
 const TermsAndConditions = () => {
   return (
     <div style={{ fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif', backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
@@ -44,7 +42,7 @@ const TermsAndConditions = () => {
                 <div className="career-page-top__content-box-two">
 
                   <p className="career-page-top__text-1 pt-8" style={{ color: 'black' }}>
-                    Welcome to yum-mi.com! These Terms and Conditions
+                    Welcome to rankingbrokers.com! These Terms and Conditions
                     (&quot;Terms&quot;) constitute a distance agreement between
                     GUΑRΑΝТЕЕD GRЕΑТ SЕRVIСЕ LТD (&quot;Company&quot;), a company registered
                     under the laws of England and Wales, Company Number:
@@ -53,7 +51,7 @@ const TermsAndConditions = () => {
                     (&quot;Customer&quot;).
                   </p>
                   <p className="career-page-top__text-1 pt-8" style={{ color: 'black' }}>
-                    By accessing or using yum-mi.com, you agree to be bound by
+                    By accessing or using rankingbrokers.com, you agree to be bound by
                     these Terms. If you do not agree with these Terms, please do
                     not use our services.
                   </p>
@@ -152,10 +150,10 @@ const TermsAndConditions = () => {
                   </h4>
                   <p className="career-page-top__text-1" style={{ color: 'black' }}>
                     All content generated using our tools is the exclusive
-                    property of the user who created it. Yum-Mi does not
+                    property of the user who created it. Ranking Brokers does not
                     claim ownership rights to the generated content. You retain
                     all rights to use, distribute, and create derivative works
-                    from the content you create. Yum-Mi provides you with
+                    from the content you create. Ranking Brokers provides you with
                     a platform to generate content, but does not require any
                     rights to its use.
                   </p>
@@ -172,7 +170,7 @@ const TermsAndConditions = () => {
                     6. Limitation of Liability
                   </h4>
                   <p className="career-page-top__text-1" style={{ color: 'black' }}>
-                    To the fullest extent permitted by law, Yum-Mi shall
+                    To the fullest extent permitted by law, Ranking Brokers shall
                     not be liable for any indirect, incidental, special,
                     consequential, or punitive damages, or any loss of profits
                     or revenues, whether incurred directly or indirectly, or any
@@ -203,7 +201,7 @@ const TermsAndConditions = () => {
                     7. Indemnification
                   </h4>
                   <p className="career-page-top__text-1" style={{ color: 'black' }}>
-                    You agree to indemnify and hold harmless Yum-Mi, its
+                    You agree to indemnify and hold harmless Ranking Brokers, its
                     affiliates, and their respective officers, directors,
                     employees, and agents from and against any claims,
                     liabilities, damages, losses, and expenses, including
@@ -230,7 +228,7 @@ const TermsAndConditions = () => {
                   <h4 className="career-page-top__title-3" style={{ color: 'black' }}>10. Contact Us</h4>
                   <p className="career-page-top__text-1" style={{ color: 'black' }}>
                     If you have any questions or concerns about these Terms,
-                    please contact us at support@yum-mi.com.
+                    please contact us at support@rankingbrokers.com.
                   </p>
                 </div>
               </div>

@@ -50,3 +50,25 @@ Thumbs.db
 # Logs
 logs
 *.log
+
+# Playwright and testing artifacts
+/.playwright-mcp/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Jest
+/coverage/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

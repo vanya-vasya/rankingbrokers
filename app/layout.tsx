@@ -16,12 +16,12 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Yum-mi",
-  description: "AI-powered creative tools for everyone",
+  title: "Ranking Brokers",
+  description: "Professional broker reviews and financial insights",
   icons: {
-    icon: "/logos/yum-mi-onigiri-logo.png",
-    shortcut: "/logos/yum-mi-onigiri-logo.png",
-    apple: "/logos/yum-mi-onigiri-logo.png",
+    icon: "/logos/ranking-brokers-logo.png",
+    shortcut: "/logos/ranking-brokers-logo.png",
+    apple: "/logos/ranking-brokers-logo.png",
   },
 };
 

@@ -5,129 +5,135 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const routes = [
+const brokersReviewItems = [
   {
-    name: "Our Story",
-    href: "/story",
+    name: "Forex Brokers",
+    href: "/brokers-review/forex-broker",
   },
   {
-    name: "Pricing",
-    href: "/#pricing",
+    name: "Crypto Brokers",
+    href: "/brokers/crypto",
+  },
+  {
+    name: "Stock Brokers",
+    href: "/brokers/stocks",
+  },
+  {
+    name: "CFD Brokers",
+    href: "/brokers/cfd",
   },
 ];
 
-const productItems = [
+const routes = [
   {
-    name: "Master Chef",
-    href: "#",
+    name: "Best Brokers",
+    href: "/best-brokers",
   },
   {
-    name: "Master Nutritionist",
-    href: "#",
+    name: "Blog",
+    href: "/blog",
   },
   {
-    name: "Cal Tracker",
-    href: "#",
-  },
-  {
-    name: "Digest",
-    href: "",
-    comingSoon: true,
+    name: "About",
+    href: "/about",
   },
 ];
 
 const Header = () => {
-  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+  const [isBrokersDropdownOpen, setIsBrokersDropdownOpen] = useState(false);
 
-  const handleProductClick = () => {
-    setIsProductDropdownOpen(!isProductDropdownOpen);
+  const handleBrokersClick = () => {
+    setIsBrokersDropdownOpen(!isBrokersDropdownOpen);
   };
 
   const handleDropdownClose = () => {
-    setIsProductDropdownOpen(false);
+    setIsBrokersDropdownOpen(false);
   };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
       if (!target.closest('.dropdown-container')) {
-        setIsProductDropdownOpen(false);
+        setIsBrokersDropdownOpen(false);
       }
     };
 
-    if (isProductDropdownOpen) {
+    if (isBrokersDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isProductDropdownOpen]);
+  }, [isBrokersDropdownOpen]);
 
   return (
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-6 gap-1">
-        <div className="flex">
+        <div className="flex items-center">
           <Link href="/" className="-m-1.5 p-1.5">
-            <Image width={"98"} height={"39"} src="/logos/yum-mi-onigiri-logo.png" alt="Yum-mi Logo"/>
+            <Image width={"98"} height={"39"} src="/logos/ranking-brokers-logo.png" alt="Ranking Brokers Logo"/>
           </Link>
         </div>
-        <div className="flex gap-x-12 ml-12">
-          <div className="nav-container-light-green">
-            <div className="dropdown-container">
-              <button
-                onClick={handleProductClick}
-                className="nav-link dropdown-trigger"
-              >
-                Products
-              </button>
-              {isProductDropdownOpen && (
-                <div className="dropdown-menu">
-                  {productItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="dropdown-item"
-                      onClick={handleDropdownClose}
-                    >
-                      {item.name}
-                      {item.comingSoon && <span className="coming-soon">Coming Soon</span>}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-            {routes.map((route) => (
-              <Link
-                key={route.name}
-                href={route.href}
-                className="nav-link"
-              >
-                {route.name}
-              </Link>
-            ))}
+        <div className="hidden lg:flex items-center gap-x-2 ml-12">
+          <div className="dropdown-container">
+            <button
+              onClick={handleBrokersClick}
+              className="nav-link dropdown-trigger"
+            >
+              Brokers Review
+            </button>
+            {isBrokersDropdownOpen && (
+              <div className="dropdown-menu">
+                {brokersReviewItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="dropdown-item"
+                    onClick={handleDropdownClose}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
+          {routes.map((route) => (
+            <Link
+              key={route.name}
+              href={route.href}
+              className="nav-link"
+            >
+              {route.name}
+            </Link>
+          ))}
         </div>
-        <div className="flex lg:flex-1 lg:justify-end">
-          <div className="flex ">
-            <ul className="main-header__login-sing-up">
-              <li>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="nav-container-green">
-                    <Link
-                      href="/#pricing"
-                      className="nav-link"
-                    >
-                      Get Started
-                    </Link>
-                  </div>
-                </motion.div>
-              </li>
-            </ul>
+        <div className="flex items-center gap-3 lg:flex-1 lg:justify-end">
+          {/* Search Icon */}
+          <button 
+            className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors"
+            aria-label="Search"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-gray-700">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </button>
+          
+          {/* Contact Us Button - Highlighted CTA */}
+          <div className="hidden lg:block">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Link
+                href="/contact"
+                className="contact-cta-button"
+              >
+                Contact Us
+              </Link>
+            </motion.div>
           </div>
+          
           <GuestMobileSidebar />
         </div>
       </nav>
@@ -138,61 +144,50 @@ const Header = () => {
           --contact-font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
-        .nav-container {
-          display: flex;
-          background-color: #f8fafc;
-          border-radius: 9999px;
-          padding: 4px;
-          gap: 4px;
-        }
-
-        .nav-container-green {
-          display: flex;
-          background-color: #86efac;
-          border-radius: 9999px;
-          padding: 4px;
-          gap: 4px;
-        }
-
-        .nav-container-light-green {
-          display: flex;
-          background-color: #dcfce7;
-          border-radius: 9999px;
-          padding: 4px;
-          gap: 4px;
-        }
-
         .nav-link {
-          font-family: var(--contact-font);
+          font-family: var(--nav-font);
           font-weight: 600;
           font-size: 16px;
-          line-height: 1.1;
-          letter-spacing: 0.01em;
+          line-height: 1.5;
+          letter-spacing: -0.01em;
           text-transform: none;
-          color: #0f172a;
-          padding: 8px 16px;
-          border-radius: 9999px;
-          transition: all 500ms ease-in-out;
-        }
-
-        .main-header__login-sing-up .nav-link {
-          font-family: var(--contact-font) !important;
-          font-weight: 600 !important;
-          font-size: 16px !important;
-          line-height: 1.1 !important;
-          letter-spacing: 0.01em !important;
-          text-transform: none !important;
-          color: #0f172a !important;
-          padding: 8px 16px !important;
-          border-radius: 9999px !important;
-          border: none !important;
+          color: #1f2937;
+          padding: 10px 16px;
+          border-radius: 8px;
+          transition: all 200ms ease-in-out;
+          display: inline-flex;
+          align-items: center;
+          text-decoration: none;
+          background: transparent;
         }
 
         .nav-link:hover {
-          background: linear-gradient(to right, #10b981, #059669, #047857);
-          background-clip: text;
-          -webkit-background-clip: text;
-          color: transparent;
+          background-color: #f3f4f6;
+          color: #111827;
+          text-decoration: none;
+        }
+
+        .contact-cta-button {
+          font-family: var(--contact-font);
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 1.5;
+          letter-spacing: -0.01em;
+          text-transform: none;
+          color: #ffffff;
+          background-color: #059669;
+          padding: 10px 24px;
+          border-radius: 9999px;
+          transition: all 200ms ease-in-out;
+          display: inline-flex;
+          align-items: center;
+          text-decoration: none;
+          border: none;
+        }
+
+        .contact-cta-button:hover {
+          background-color: #047857;
+          color: #ffffff;
           text-decoration: none;
         }
 
@@ -225,28 +220,19 @@ const Header = () => {
           align-items: center;
           justify-content: space-between;
           padding: 12px 16px;
-          font-family: var(--contact-font);
+          font-family: var(--nav-font);
           font-weight: 600;
           font-size: 14px;
-          color: #0f172a;
+          color: #1f2937;
           text-decoration: none;
           border-radius: 8px;
-          transition: all 300ms ease-in-out;
+          transition: all 200ms ease-in-out;
           width: 100%;
         }
 
         .dropdown-item:hover {
-          background-color: #f8fafc;
-          color: #10b981;
-        }
-
-        .coming-soon {
-          font-size: 11px;
-          background: #f3f4f6;
-          color: #6b7280;
-          padding: 2px 6px;
-          border-radius: 4px;
-          font-weight: 500;
+          background-color: #f3f4f6;
+          color: #059669;
         }
       `}</style>
     </header>
