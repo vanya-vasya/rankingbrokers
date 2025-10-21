@@ -1,5 +1,3 @@
-import CTA from "@/components/landing/cta";
-
 const CookiesPolicy = () => {
   return (
     <div style={{ fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif', backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
@@ -44,7 +42,7 @@ const CookiesPolicy = () => {
                 <div className="career-page-top__content-box-two">
 
                   <p className="career-page-top__text-1 pt-8" style={{ color: 'black' }}>
-                    At yum-mi.com, we use cookies to enhance your browsing
+                    At rankingbrokers.com, we use cookies to enhance your browsing
                     experience, provide personalized services, and analyze our
                     website traffic. This policy explains what cookies are, how
                     we use them, and your choices regarding their usage.
@@ -62,7 +60,7 @@ const CookiesPolicy = () => {
                     Types of Cookies We Use
                   </h4>
                   <p className="career-page-top__text-1" style={{ color: 'black' }}>
-                    We use the following types of cookies on yum-mi.com:
+                    We use the following types of cookies on rankingbrokers.com:
                   </p>
                   <ul className="career-page-top__points-list list-unstyled pt-4">
                     <li>

@@ -1,4 +1,3 @@
-import { aspectRatioOptions } from "@/constants";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -33,21 +32,6 @@ export const dataUrl = `data:image/svg+xml;base64,${toBase64(
   shimmer(1000, 1000)
 )}`;
 
-export type AspectRatioKey = keyof typeof aspectRatioOptions;
-export const getImageSize = (
-  type: string,
-  image: any,
-  dimension: "width" | "height"
-): number => {
-  if (type === "fill") {
-    return (
-      aspectRatioOptions[image.aspectRatio as AspectRatioKey]?.[dimension] ||
-      1000
-    );
-  }
-  return image?.[dimension] || 1000;
-};
-
 export const debounce = (func: (...args: any[]) => void, delay: number) => {
   let timeoutId: NodeJS.Timeout | null;
   return (...args: any[]) => {
@@ -81,7 +65,6 @@ export const deepMergeObjects = (obj1: any, obj2: any) => {
   return output;
 };
 
-
 // DOWNLOAD IMAGE
 export const download = (url: string, filename: string) => {
   if (!url) {
@@ -102,9 +85,3 @@ export const download = (url: string, filename: string) => {
     })
     .catch((error) => console.log({ error }));
 };
-
-
-
-export const getUserAvailableGenerations = (user: any) => {
-  return user.availableGenerations - user.usedGenerations;
-}

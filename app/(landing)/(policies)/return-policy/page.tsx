@@ -1,5 +1,3 @@
-import CTA from "@/components/landing/cta";
-
 const ReturnPolicy = () => {
   return (
     <div style={{ fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif', backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
@@ -43,7 +41,7 @@ const ReturnPolicy = () => {
                 <div className="career-page-top__content-box-two">
 
                   <p className="career-page-top__text-1 pt-8" style={{ color: 'black' }}>
-                    At yum-mi.com, we strive to provide high-quality AI
+                    At rankingbrokers.com, we strive to provide high-quality
                     generation services that meet your needs. However, if you
                     are not satisfied with your purchase, we offer a return
                     policy for unused generations. This policy is designed to
@@ -71,7 +69,7 @@ const ReturnPolicy = () => {
                         those that have been utilized in any of our AI
                         generation services, including but not limited to text
                         generation, image creation, or any other AI tool
-                        provided on yum-mi.com.
+                        provided on rankingbrokers.com.
                       </p>
                     </li>
                     <li>
@@ -102,7 +100,7 @@ const ReturnPolicy = () => {
                   <p className="career-page-top__text-1" style={{ color: 'black' }}>
                     To initiate a return, please contact our support team
                     through our contact form on the website or by sending an
-                    email to support@yum-mi.com. In your message, include the
+                    email to support@rankingbrokers.com. In your message, include the
                     following information:
                   </p>
                   <ul className="career-page-top__points-list list-unstyled pt-4">
@@ -154,7 +152,7 @@ const ReturnPolicy = () => {
                   <p className="career-page-top__text-1" style={{ color: 'black' }}>
                     If you have any questions or need assistance with your
                     return, please contact our support team at
-                    support@yum-mi.com. Our team is available to help you with
+                    support@rankingbrokers.com. Our team is available to help you with
                     any issues or concerns you may have regarding our return
                     policy or any other aspect of our services.
                   </p>

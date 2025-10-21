@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import CodeSnippet from "@/components/ui/CodeSnippet"; 
-import ChatInterface from "@/components/ui/ChatInterface"; 
+// Removed unused imports 
 import Image from 'next/image';
 import Link from "next/link";
 
@@ -145,8 +144,10 @@ const Products = () => {
                         loading="lazy"
                       />
                     ) : (
-                      <div className="absolute inset-0 h-full w-full bg-white">
-                        <ChatInterface />
+                      <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+                        <div className="text-white text-4xl font-bold opacity-50">
+                          Chat Interface
+                        </div>
                       </div>
                     )}
                   </div>
@@ -179,22 +180,6 @@ const Products = () => {
                       >
                         {tool.description}
                       </p>
-
-                      <div className="main-header__login-sing-up">
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <div className="nav-container-green">
-                            <Link
-                              href="/dashboard"
-                              className="nav-link"
-                            >
-                              Begin
-                            </Link>
-                          </div>
-                        </motion.div>
-                      </div>
                     </div>
                   </div>
                 </div>

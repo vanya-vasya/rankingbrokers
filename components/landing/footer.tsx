@@ -46,7 +46,7 @@ const companyDetails = [
     icon: FileText,
   },
   {
-    name: "support@yum-mi.com",
+    name: "support@rankingbrokers.com",
     icon: Mail,
   },
   {
@@ -67,7 +67,7 @@ const Footer = () => {
             <div className="pr-4 pl-4">
               <div className="footer-widget__column footer-widget__about">
                 <div className="footer-widget__logo">
-                  <Image width={"98"} height={"39"} src="/logos/yum-mi-onigiri-logo.png" alt="Yum-mi Logo" />
+                  <Image width={"98"} height={"39"} src="/logos/ranking-brokers-logo.png" alt="Ranking Brokers Logo" />
                 </div>
                 <p 
                   className="footer-widget__about-text"
@@ -209,7 +209,7 @@ const Footer = () => {
                 color: '#0f172a'
               }}
             >
-              Yum-mi, Copyright © {year}. All Rights Reserved.
+              Ranking Brokers, Copyright © {year}. All Rights Reserved.
             </p>
           </div>
         </div>

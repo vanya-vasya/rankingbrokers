@@ -1,5 +1,3 @@
-import CTA from "@/components/landing/cta";
-
 const PrivacyPolicy = () => {
   return (
     <div style={{ fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif', backgroundColor: 'white', color: 'black', minHeight: '100vh' }}>
@@ -43,7 +41,7 @@ const PrivacyPolicy = () => {
                 <div className="career-page-top__content-box-two">
 
                   <p className="career-page-top__text-1 pt-8" style={{ color: 'black' }}>
-                    Welcome to yum-mi.com! This Privacy Policy explains how we
+                    Welcome to rankingbrokers.com! This Privacy Policy explains how we
                     collect, use, disclose, and safeguard your information when
                     you visit our website and use our AI generation services.
                     Please read this policy carefully. If you do not agree with
@@ -58,7 +56,7 @@ const PrivacyPolicy = () => {
                       <div className="career-page-top__points-shape"></div>
                                               <p style={{ color: 'black' }}>
                         <strong>Personal Information:</strong> When you register
-                        on yum-mi.com, we may collect the following personal
+                        on rankingbrokers.com, we may collect the following personal
                         information: Name, Email address, Payment information
                         (for purchasing additional generations).
                       </p>
@@ -94,7 +92,7 @@ const PrivacyPolicy = () => {
                         <strong>To Communicate with You:</strong> We may use
                         your email address to send you updates, newsletters, and
                         other communications related to your use of
-                        yum-mi.com.
+                        rankingbrokers.com.
                       </p>
                     </li>
                     <li>
@@ -195,7 +193,7 @@ const PrivacyPolicy = () => {
                   </ul>
                   <p className="career-page-top__text-1" style={{ color: 'black' }}>
                     To exercise any of these rights, please contact us at
-                    support@yum-mi.com.
+                    support@rankingbrokers.com.
                   </p>
                   <h4 className="career-page-top__title-3" style={{ color: 'black' }}>
                     Changes to This Privacy Policy
@@ -210,7 +208,7 @@ const PrivacyPolicy = () => {
                   <h4 className="career-page-top__title-3" style={{ color: 'black' }}>Contact Us</h4>
                   <p className="career-page-top__text-1" style={{ color: 'black' }}>
                     If you have any questions or concerns about this Privacy
-                    Policy, please contact us at support@yum-mi.com.
+                    Policy, please contact us at support@rankingbrokers.com.
                   </p>
                 </div>
               </div>

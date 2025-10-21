@@ -1,10 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-import { ModalProvider } from "@/components/modal-provider";
 import { ToasterProvider } from "@/components/toaster-provider";
 
 import NextTopLoader from "nextjs-toploader";
@@ -18,12 +16,12 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Yum-mi",
-  description: "AI-powered creative tools for everyone",
+  title: "Ranking Brokers",
+  description: "Professional broker reviews and financial insights",
   icons: {
-    icon: "/logos/yum-mi-onigiri-logo.png",
-    shortcut: "/logos/yum-mi-onigiri-logo.png",
-    apple: "/logos/yum-mi-onigiri-logo.png",
+    icon: "/logos/ranking-brokers-logo.png",
+    shortcut: "/logos/ranking-brokers-logo.png",
+    apple: "/logos/ranking-brokers-logo.png",
   },
 };
 
@@ -33,22 +31,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            inter.variable,
-            spaceGrotesk.variable
-          )}
-        >
-          <GoogleAnalytics gaId="G-DYY23NK5V1" />
-          <ModalProvider />
-          <ToasterProvider />
-          <NextTopLoader color="#3c3c77" showSpinner={false} />
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          inter.variable,
+          spaceGrotesk.variable
+        )}
+      >
+        <GoogleAnalytics gaId="G-DYY23NK5V1" />
+        <ToasterProvider />
+        <NextTopLoader color="#3c3c77" showSpinner={false} />
+        {children}
+      </body>
+    </html>
   );
 }
